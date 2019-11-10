@@ -5,13 +5,14 @@ const session = require("express-session");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportConfig = require("./config/passport");
-const cookieSession = require("cookie-session");
 const app = express();
 
+// Global variables
 const PORT = process.env.PORT;
 const DB = process.env.DB;
 const SECRET = process.env.COOKIE_SECRET;
 
+// Middleware for JSON, passport, session and requests
 app.use(
   session({
     resave: true,
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Connect to database
 mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }, e => {
   if (e) {
     console.log(e);
@@ -36,14 +38,17 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }, e => {
   }
 });
 
+// Enable CORS requests (requests between front- and backend)
 app.use(
   cors({
-    origin: "http://localhost:3000", // allow to server to accept request from different origin
+    origin: "http://localhost:3000",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true // allow session cookie from browser to pass through
+    credentials: true
   })
 );
 
+// Routes
 app.use("/auth", require("./routes/auth"));
 
+// Server hosting
 app.listen(PORT, () => console.log(`Server running on port: ${PORT}`));

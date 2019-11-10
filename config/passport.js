@@ -6,16 +6,19 @@ const User = require("../models/user");
 const GoogleId = process.env.GOOGLE_CLIENT_ID;
 const GoogleSecret = process.env.GOOGLE_CLIENT_SECRET;
 
+// Serialize user object
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// Deserialize objects that gets send back
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
   });
 });
 
+// Passport Google Strategy
 passport.use(
   new GoogleStrategy(
     {

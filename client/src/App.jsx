@@ -11,7 +11,7 @@ function App() {
 
   const handleForm = e => {
     e.preventDefault();
-    console.log("hi");
+    console.log("yo");
   };
 
   return (

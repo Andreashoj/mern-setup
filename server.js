@@ -48,7 +48,7 @@ mongoose.connect(DB, { useNewUrlParser: true, useUnifiedTopology: true }, e => {
 // Enable CORS requests (requests between front- and backend)
 app.use(
   cors({
-    origin: "http://localhost:5000",
+    origin: "https://glacial-sands-90363.herokuapp.com/",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true
   })

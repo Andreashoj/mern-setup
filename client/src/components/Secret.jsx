@@ -6,7 +6,6 @@ const Secret = () => {
   const { user, fetchUser, handleRedirect } = useContext(UserContext);
 
   useEffect(() => {
-    fetchUser();
     console.log(user);
   }, []);
 

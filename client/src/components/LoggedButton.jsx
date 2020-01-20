@@ -6,10 +6,6 @@ const LoggedButton = () => {
     UserContext
   );
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
   let btn;
   if (user) {
     btn = <button onClick={handleLogout}>Logout</button>;

@@ -3,17 +3,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import RegisterForm from "./components/RegisterForm";
 import Secret from "./components/Secret";
-import UserContextProvider, { UserContext } from "./contexts/UserContext";
+import UserContextProvider from "./contexts/UserContext";
 import LoggedButton from "./components/LoggedButton";
 
 function App() {
-  const [body, setBody] = useState("");
-
-  const handleForm = e => {
-    e.preventDefault();
-    console.log("yo");
-  };
-
   return (
     <Router>
       <UserContextProvider>

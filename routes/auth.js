@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const HOMEPAGE_URL = "http://localhost:3000";
+const HOMEPAGE_URL = "http://localhost:5000";
 
 // auth url
 router.get(

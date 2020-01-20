@@ -2,6 +2,7 @@ const router = require("express").Router();
 const passport = require("passport");
 
 const HOMEPAGE_URL = "http://localhost:5000";
+const LIVE_URL = "https://glacial-sands-90363.herokuapp.com";
 
 // auth url
 router.get(
@@ -26,7 +27,7 @@ router.get("/login/success", (req, res) => {
 // logout redirect
 router.get("/logout", (req, res) => {
   req.session.destroy(e => {
-    res.redirect(HOMEPAGE_URL);
+    res.redirect(LIVE_URL);
   });
 });
 
@@ -42,7 +43,7 @@ router.get("/login/failed", (req, res) => {
 router.get(
   "/login/redirect",
   passport.authenticate("google", {
-    successRedirect: HOMEPAGE_URL,
+    successRedirect: LIVE_URL,
     failureRedirect: "/login/failed"
   })
 );

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import { Redirect } from "react-router-dom";
 
 export const UserContext = createContext();
@@ -8,11 +8,11 @@ const UserContextProvider = props => {
   const [message, setMessage] = useState();
 
   const fetchUser = () => {
-    fetch("http://localhost:5000/auth/login/success", {
+    fetch("/auth/login/success", {
       method: "GET",
       credentials: "include",
       headers: {
-        Accept: "application/json",
+        accepts: "application/json",
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true
       }
@@ -28,11 +28,11 @@ const UserContextProvider = props => {
   };
 
   const handleLogin = () => {
-    window.open("http://localhost:5000/auth/login/google", "_self");
+    window.open("/auth/login/google", "_self");
   };
 
   const handleLogout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
+    window.open("/auth/logout", "_self");
   };
 
   const handleRedirect = () => {

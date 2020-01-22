@@ -40,7 +40,9 @@ function App() {
     <UserContextProvider>
       <Container background={background}>
         <div className="first-row">
-          <img src={logo} alt="Dev dash logo" />
+          <div>
+            <span>Read some dev news</span>
+          </div>
         </div>
         <LoggedButton />
       </Container>
@@ -55,10 +57,19 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  font-family: 'Teko', sans-serif;
   .first-row {
     width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
     img {
       opacity: 0.8;
+    }
+    span {
+      color: white;
+      font-size: 25px;
+      cursor: pointer;
     }
   }
 `;

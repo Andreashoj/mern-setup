@@ -13,11 +13,7 @@ const LoggedButton = () => {
 
   let btn;
   if (user) {
-    btn = (
-      <LoginHeader>
-        <span>Log in</span> for more features
-      </LoginHeader>
-    );
+    btn = <LoginHeader>Features in development.</LoginHeader>;
   } else {
     btn = (
       <LoginHeader>

@@ -13,11 +13,11 @@ const Header = () => {
 
   useEffect(() => {
     if (hour >= 3 && hour < 10) {
-      setGreeting("Morning");
+      setGreeting("morning");
     } else if (hour >= 10 && hour <= 18) {
-      setGreeting("Day");
+      setGreeting("day");
     } else {
-      setGreeting("Evening");
+      setGreeting("evening");
     }
   }, [minute]);
 
@@ -35,7 +35,7 @@ const Header = () => {
   return (
     <GreetingContainer>
       <Time>{d.getHours() + " : " + minute}</Time>
-      <h3>Good {greeting}</h3>
+      <h3>Have a good {greeting}.</h3>
     </GreetingContainer>
   );
 };

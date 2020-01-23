@@ -7,6 +7,8 @@ import styled from "styled-components";
 import logo from "./assets/devdash.svg";
 import { useCookies, Cookies } from "react-cookie";
 import Header from "./components/Header";
+import DevNews from "./components/DevNews";
+import Quote from "./components/Quote";
 
 function App() {
   const [background, setBackground] = useState();
@@ -20,14 +22,14 @@ function App() {
     if (backgroundURL !== undefined) {
       setBackground(backgroundURL);
     } else {
-      fetch("https://source.unsplash.com/1600x900/?background,relax").then(
-        background => {
-          setBackground(background.url);
-          setCookies("background-cookie", background.url, {
-            expires: tomorrow
-          });
-        }
-      );
+      fetch(
+        `https://source.unsplash.com/${window.innerWidth}x${window.innerHeight}/?background,relax`
+      ).then(background => {
+        setBackground(background.url);
+        setCookies("background-cookie", background.url, {
+          expires: tomorrow
+        });
+      });
     }
   };
 
@@ -39,15 +41,15 @@ function App() {
     <UserContextProvider>
       <Container background={background}>
         <div className="upper-row">
-          <div>
-            <p>Read some dev news</p>
-          </div>
+          <DevNews />
         </div>
         <div className="middle-row">
           <Header />
           <LoggedButton />
         </div>
-        <div className="bottom-row"></div>
+        <div className="bottom-row">
+          <Quote />
+        </div>
       </Container>
     </UserContextProvider>
   );
@@ -69,17 +71,15 @@ const Container = styled.div`
     img {
       opacity: 0.8;
     }
-    p {
-
-      color: white;
-      font-size: 25px;
-      cursor: pointer;
-    }
   }
   .middle-row {
     height: 80vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+  }
+  .bottom-row {
+    display: flex;
     justify-content: center;
   }
 `;

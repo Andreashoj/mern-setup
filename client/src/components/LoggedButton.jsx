@@ -29,6 +29,7 @@ const LoginHeader = styled.p`
   color: white;
   font-size: 40px;
   margin: 50px 0 0 0;
+  text-align: center;
   span {
     border-bottom: 2px solid white;
     cursor: pointer;

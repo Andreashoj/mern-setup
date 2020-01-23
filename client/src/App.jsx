@@ -6,6 +6,7 @@ import LoggedButton from "./components/LoggedButton";
 import styled from "styled-components";
 import logo from "./assets/devdash.svg";
 import { useCookies, Cookies } from "react-cookie";
+import Header from "./components/Header";
 
 function App() {
   const [background, setBackground] = useState();
@@ -14,7 +15,6 @@ function App() {
 
   const getBackground = () => {
     const backgroundURL = cookie.get("background-cookie");
-    console.log(background, backgroundURL);
     const tomorrow = new Date();
     tomorrow.setDate(new Date().getDate() + 1);
     if (backgroundURL !== undefined) {
@@ -33,18 +33,21 @@ function App() {
 
   useEffect(() => {
     getBackground();
-    console.log(background);
   }, []);
 
   return (
     <UserContextProvider>
       <Container background={background}>
-        <div className="first-row">
+        <div className="upper-row">
           <div>
-            <span>Read some dev news</span>
+            <p>Read some dev news</p>
           </div>
         </div>
-        <LoggedButton />
+        <div className="middle-row">
+          <Header />
+          <LoggedButton />
+        </div>
+        <div className="bottom-row"></div>
       </Container>
     </UserContextProvider>
   );
@@ -58,19 +61,26 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   font-family: 'Teko', sans-serif;
-  .first-row {
+  .upper-row {
     width: 90%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 30px;
+    margin-top: 10px;
     img {
       opacity: 0.8;
     }
-    span {
+    p {
+
       color: white;
       font-size: 25px;
       cursor: pointer;
     }
+  }
+  .middle-row {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;
 

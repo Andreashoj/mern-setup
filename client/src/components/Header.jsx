@@ -1,0 +1,62 @@
+import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
+import styled from "styled-components";
+
+const Header = () => {
+  const { user } = useContext(UserContext);
+  const [greeting, setGreeting] = useState("");
+  const d = new Date();
+  const [hour, setHour] = useState(() => d.getHours());
+  const [minute, setMinute] = useState(
+    (d.getMinutes() < 10 ? "0" : "") + d.getMinutes()
+  );
+
+  useEffect(() => {
+    if (hour >= 3 && hour < 10) {
+      setGreeting("Morning");
+    } else if (hour >= 10 && hour <= 18) {
+      setGreeting("Day");
+    } else {
+      setGreeting("Evening");
+    }
+  }, [minute]);
+
+  const UpdateTime = () => {
+    const date = new Date();
+    const currentSecond = date.getSeconds();
+    if (currentSecond === 0) {
+      const newMinute = (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+      setMinute(newMinute);
+    }
+  };
+
+  setInterval(UpdateTime, 1000);
+
+  return (
+    <GreetingContainer>
+      <Time>{d.getHours() + " : " + minute}</Time>
+      <h3>Good {greeting}</h3>
+    </GreetingContainer>
+  );
+};
+
+const Time = styled.h1`
+  color: white;
+  font-size: 130px;
+  font-weight: 400;
+  margin-bottom: 0;
+  text-align: center;
+`;
+
+const GreetingContainer = styled.div`
+  h3 {
+    text-align: center;
+    font-size: 70px;
+    color: white;
+    font-weight: 400;
+    margin-top: -50px;
+    top: 10px;
+  }
+`;
+
+export default Header;

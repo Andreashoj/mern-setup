@@ -18,12 +18,13 @@ const UserContextProvider = props => {
       }
     })
       .then(response => {
-        console.log(response);
         if (response.status === 200) return response.json();
       })
       .then(responseJson => {
-        setUser(responseJson.user);
-        setMessage(responseJson.message);
+        if (responseJson) {
+          setMessage(responseJson.message);
+          setUser(responseJson.user);
+        }
       });
   };
 

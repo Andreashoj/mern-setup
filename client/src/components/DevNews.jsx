@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
+import Article from "./Article";
 
 const DevNews = () => {
   const [news, setNews] = useState();
@@ -13,9 +14,12 @@ const DevNews = () => {
   });
 
   const fetchNews = () => {
-    fetch("https://favqs.com/api/qotd")
+    fetch("https://dev.to/api/articles/?key=Xjuj2yoRk6JWFpXNHEWWLnBj")
       .then(response => response.json())
-      .then(data => setNews(data.quote))
+      .then(data => {
+        data.length = 3;
+        setNews(data);
+      })
       .catch(err => {
         console.log(err);
       });
@@ -31,7 +35,11 @@ const DevNews = () => {
       {transitions.map(({ item, key, props }) =>
         item ? (
           <animated.div style={props}>
-            <NewsContainer>yo</NewsContainer>
+            <NewsContainer>
+              {news.map(article => (
+                <Article article={article} />
+              ))}
+            </NewsContainer>
           </animated.div>
         ) : null
       )}
@@ -65,8 +73,9 @@ const News = styled.div`
 const NewsContainer = styled.div`
   position: absolute;
   right: -2px;
-  width: 300px;
-  height: 500px;
+  width: 400px;
+  height: auto;
+  max-height: 400px;
   background-color: white;
   margin-top: -22px;
   transition: all 0.3s ease;

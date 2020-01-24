@@ -27,7 +27,7 @@ const Quote = () => {
 };
 
 const QuoteContainer = styled.div`
-  width: 50%;
+  max-width: 500px;
 `;
 
 const QuoteText = styled.p`
@@ -38,6 +38,7 @@ const QuoteText = styled.p`
   font-weight: 600;
   margin-top: 10px;
   margin-bottom: 30px;
+  opacity: 0.9;
 `;
 
 export default Quote;

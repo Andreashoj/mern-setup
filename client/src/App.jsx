@@ -62,6 +62,7 @@ overflow: hidden;
   height: 100vh;
   width: 100%;
   background-image: url('${props => props.background}');
+  background-size: cover;
   display: flex;
   align-items: center;
   flex-direction: column;

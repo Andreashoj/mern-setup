@@ -40,6 +40,7 @@ function App() {
   return (
     <UserContextProvider>
       <Container background={background}>
+        <div className="background-opacity"></div>
         <div className="upper-row">
           <DevNews />
         </div>
@@ -56,6 +57,7 @@ function App() {
 }
 
 const Container = styled.div`
+position: relative;
   height: 100vh;
   width: 100%;
   background-image: url('${props => props.background}');
@@ -68,6 +70,7 @@ const Container = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
+    z-index: 0;
     img {
       opacity: 0.8;
     }
@@ -77,10 +80,19 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    z-index: 0;
   }
   .bottom-row {
     display: flex;
     justify-content: center;
+    z-index: 0;
+  }
+ .background-opacity {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    opacity: 0.2;
+    background-color: black;
   }
 `;
 

@@ -13,8 +13,6 @@ const Quote = () => {
       });
   };
 
-  console.log(quote);
-
   useEffect(() => {
     fetchQuote();
   }, []);
@@ -22,7 +20,7 @@ const Quote = () => {
   return (
     <QuoteContainer>
       <QuoteText>
-        "{quote.body}" <br />- {quote.author}
+        "{quote.body}" <br /> <br />- {quote.author}
       </QuoteText>
     </QuoteContainer>
   );
@@ -38,7 +36,7 @@ const QuoteText = styled.p`
   text-align: center;
   font-size: 16px;
   font-weight: 600;
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 30px;
 `;
 

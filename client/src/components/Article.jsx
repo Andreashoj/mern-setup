@@ -6,7 +6,9 @@ const Article = ({ article }) => {
     title: article.title,
     image: article.cover_image,
     published: article.readable_publish_date,
-    tags: article.tag_list
+    tags: article.tag_list,
+    user: article.user.name,
+    link: article.url
   });
 
   useEffect(() => {
@@ -30,15 +32,20 @@ const Article = ({ article }) => {
     <ArticleContainer>
       <img src={articleObj.image} alt="" />
       <div className="article-details-container">
-        <h4>{articleObj.title}</h4>
         <div className="article-details">
           {articleObj.tags
             ? articleObj.tags.map(tag => {
                 return <span key={tag}>{handleUppercase(tag)}</span>;
               })
             : null}
-          <span>{articleObj.published}</span>
         </div>
+        <h4>{articleObj.title}</h4>
+        <span>
+          {articleObj.published} by {articleObj.user} -{" "}
+          <a href={articleObj.link} target="_blank">
+            Read article.
+          </a>
+        </span>
       </div>
     </ArticleContainer>
   );
@@ -46,11 +53,16 @@ const Article = ({ article }) => {
 
 const ArticleContainer = styled.div`
   font-family: "helvetica";
-  padding: 10px;
+  z-index: 1;
+  padding: 15px;
   margin: 10px 0;
   display: flex;
   color: #0a1826;
   font-weight: 500;
+  a {
+    text-decoration: none;
+    font-weight: 600;
+  }
   img {
     height: 64px;
     width: 64px;
@@ -61,23 +73,21 @@ const ArticleContainer = styled.div`
     flex-direction: column;
     padding: 0 5px;
     justify-content: space-between;
-    width: 100%;
   }
   h4 {
-    margin: 0;
+    margin: 0 0 0 12px;
     font-size: 16px;
   }
   span {
     color: #1b1e23;
-    padding: 5px 10px;
+    padding: 0px 0px 0 10px;
     margin: 0 2px;
-    border: 1px solid black;
-    color: black;
+    font-size: 14px;
+    color: #797979;
   }
   .article-details {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
   }
 `;
 

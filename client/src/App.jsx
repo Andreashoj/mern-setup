@@ -57,8 +57,8 @@ function App() {
 }
 
 const Container = styled.div`
-position: relative;
-overflow: hidden;
+  position: relative;
+  overflow: hidden;
   height: 100vh;
   width: 100%;
   background-image: url('${props => props.background}');

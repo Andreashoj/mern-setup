@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
 import Article from "./Article";
+import refresh from "../assets/refresh.svg";
 
 const DevNews = () => {
   const [news, setNews] = useState();
@@ -36,6 +37,9 @@ const DevNews = () => {
         item ? (
           <animated.div style={props}>
             <NewsContainer>
+              <div className="refresh">
+                <img src={refresh} alt="" />
+              </div>
               {news.map(article => (
                 <Article article={article} />
               ))}
@@ -81,6 +85,18 @@ const NewsContainer = styled.div`
   transition: all 0.3s ease;
   .show {
     height: 180px;
+  }
+  .refresh {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    img {
+      height: 22px;
+      width: 22px;
+      padding: 30px 50px 0px 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
   }
 `;
 

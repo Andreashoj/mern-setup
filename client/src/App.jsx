@@ -11,11 +11,11 @@ import DevNews from "./components/DevNews";
 import Quote from "./components/Quote";
 
 function App() {
-  const [background, setBackground] = useState();
+  const [background, setBackground] = useState("");
   const [cookies, setCookies, removeCookies] = useCookies(["background"]);
   const cookie = new Cookies();
 
-  const getBackground = () => {
+  const getBackground = async () => {
     const backgroundURL = cookie.get("background-cookie");
     const tomorrow = new Date();
     tomorrow.setDate(new Date().getDate() + 1);
@@ -72,7 +72,7 @@ const Container = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
-    z-index: 0;
+    z-index: 1;
     img {
       opacity: 0.8;
     }

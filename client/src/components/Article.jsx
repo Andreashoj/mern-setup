@@ -5,8 +5,9 @@ const Article = ({ article }) => {
   const [articleObj, setArticleObj] = useState({
     title: article.title,
     image: article.cover_image,
+    user_image: article.user.profile_image,
     published: article.readable_publish_date,
-    tags: article.tag_list,
+    tags: article.tag_list.slice(0, 3),
     user: article.user.name,
     link: article.url
   });
@@ -30,7 +31,11 @@ const Article = ({ article }) => {
 
   return (
     <ArticleContainer>
-      <img src={articleObj.image} alt="" />
+      {articleObj.image ? (
+        <img src={articleObj.image} alt="" />
+      ) : (
+        <img src={articleObj.user_image} />
+      )}
       <div className="article-details-container">
         <div className="article-details">
           {articleObj.tags

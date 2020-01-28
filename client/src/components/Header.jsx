@@ -14,7 +14,7 @@ const Header = () => {
   useEffect(() => {
     if (hour >= 3 && hour < 10) {
       setGreeting("morning");
-    } else if (hour >= 10 && hour <= 18) {
+    } else if (hour >= 10 && hour < 17) {
       setGreeting("day");
     } else {
       setGreeting("evening");

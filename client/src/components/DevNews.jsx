@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
 import Article from "./Article";
 import refresh from "../assets/refresh.svg";
+import Searchbar from "./Searchbar";
 
 const DevNews = () => {
   const [news, setNews] = useState();
@@ -26,6 +27,18 @@ const DevNews = () => {
       });
   };
 
+  const searchNews = tag => {
+    fetch(`https://dev.to/api/articles/?tag=${tag}`)
+      .then(response => response.json())
+      .then(data => {
+        data.length = 3;
+        setNews(data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     fetchNews();
   }, []);
@@ -37,11 +50,11 @@ const DevNews = () => {
         item ? (
           <animated.div style={props}>
             <NewsContainer>
-              <div className="refresh">
-                <img src={refresh} alt="" />
+              <div className="searchbar-container">
+                <Searchbar searchNews={searchNews} />
               </div>
               {news.map(article => (
-                <Article article={article} />
+                <Article key={article.title} article={article} />
               ))}
             </NewsContainer>
           </animated.div>
@@ -97,6 +110,11 @@ const NewsContainer = styled.div`
       cursor: pointer;
       transition: all 0.3s ease;
     }
+  }
+  .searchbar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 

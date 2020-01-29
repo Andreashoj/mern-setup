@@ -29,13 +29,14 @@ const Header = () => {
       setMinute(newMinute);
     }
   };
-
   setInterval(UpdateTime, 1000);
 
   return (
     <GreetingContainer>
       <Time>{d.getHours() + " : " + minute}</Time>
-      <h3>Have a good {greeting}.</h3>
+      <h3>
+        Have a good {greeting} {user ? ", " + user.username : null}.
+      </h3>
     </GreetingContainer>
   );
 };

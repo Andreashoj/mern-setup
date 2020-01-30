@@ -43,7 +43,8 @@ const Header = () => {
     <GreetingContainer>
       <Time>{d.getHours() + " : " + minute}</Time>
       <h3>
-        Have a good {greeting} {name ? ", " + name : null}.
+        Have a good {greeting}
+        {name ? ", " + name : null}.
       </h3>
     </GreetingContainer>
   );

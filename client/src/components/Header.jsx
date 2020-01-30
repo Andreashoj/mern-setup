@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Header = () => {
   const { user } = useContext(UserContext);
+  const [name, setName] = useState();
   const [greeting, setGreeting] = useState("");
   const d = new Date();
   const [hour, setHour] = useState(() => d.getHours());
@@ -21,6 +22,13 @@ const Header = () => {
     }
   }, [minute]);
 
+  useEffect(() => {
+    if (user) {
+      const name = user.username.split(" ").slice(0, 1);
+      setName(name);
+    }
+  }, [user]);
+
   const UpdateTime = () => {
     const date = new Date();
     const currentSecond = date.getSeconds();
@@ -35,7 +43,7 @@ const Header = () => {
     <GreetingContainer>
       <Time>{d.getHours() + " : " + minute}</Time>
       <h3>
-        Have a good {greeting} {user ? ", " + user.username : null}.
+        Have a good {greeting} {name ? ", " + name : null}.
       </h3>
     </GreetingContainer>
   );
